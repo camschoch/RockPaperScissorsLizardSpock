@@ -6,24 +6,19 @@ using System.Threading.Tasks;
 
 namespace RockPaperScissorLizardSpock
 {
-    class Human : Players
+    class Human : Player
     {
-        public Human(string name, string hand)
+        public Human(string name, string hand, int score)
         {
             this.name = name;
             this.hand = hand;
+            this.score = score;
         }
-        public string GetPlayerOneHand()
-        {
-            Console.WriteLine("Type Rock, Paper, Scissor, Lizard, Spock");
-            string userInput = Console.ReadLine();
-            return userInput;
-        }
-        public string GetPlayerTwoHand()
-        {
-            Console.WriteLine("Type Rock, Paper, Scissor, Lizard, Spock");
-            string userInput = Console.ReadLine();
-            return userInput;
-        }
+        //public string GetPlayerHand()
+        //{
+        //    Console.WriteLine("Type Rock, Paper, Scissors, Lizard, Spock");
+        //    string userInput = Console.ReadLine();
+        //    return userInput;
+        //}
     }
 }

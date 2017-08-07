@@ -6,12 +6,20 @@ using System.Threading.Tasks;
 
 namespace RockPaperScissorLizardSpock
 {
-    class AI : Players
+    class AI : Player
     {
-        public AI(string name, string hand)
+        public AI(string name, int score)
         {
             this.name = name;
-            this.hand = hand;
+            this.score = score;
         }
+        //public void randomHandSelect()
+        //{
+        //    Random random = new Random();
+        //    int randomNumber = random.Next(0, 5);
+        //    string[] selectionArray = { "Rock", "Paper", "Scissors", "Lizaed", "Spock"};
+
+        //    hand = selectionArray[randomNumber];
+        //}
     }
 }
