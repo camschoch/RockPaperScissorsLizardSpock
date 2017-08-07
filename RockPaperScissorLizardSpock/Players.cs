@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace RockPaperScissorLizardSpock
 {
-    class Program
+    public abstract class Players
     {
-        static void Main(string[] args)
-        {
-            GameBoard start = new GameBoard();
-            start.setNumberOfPlayers();
+        Random random = new Random();
+        public string name;
+        public string hand;
+        public Players()
+        { 
+            
         }
     }
 }

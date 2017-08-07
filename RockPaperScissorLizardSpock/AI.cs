@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace RockPaperScissorLizardSpock
 {
-    class Program
+    class AI : Players
     {
-        static void Main(string[] args)
+        public AI(string name, string hand)
         {
-            GameBoard start = new GameBoard();
-            start.setNumberOfPlayers();
+            this.name = name;
+            this.hand = hand;
         }
     }
 }
