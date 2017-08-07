@@ -16,19 +16,39 @@ namespace RockPaperScissorLizardSpock
         { 
             
         }
-        public string GetPlayerHand()
+        public virtual void GetPlayerHand()
         {
-            Console.WriteLine("Type Rock, Paper, Scissors, Lizard, Spock");
+            Console.WriteLine("Type 1, 2, 3, 4, or 5\n 1 = Rock\n 2 = Paper\n 3 = Scissors\n 4 = Lizard\n 5 = Spock");
             string userInput = Console.ReadLine();
-            return userInput;
-        }
-        public void randomHandSelect()
-        {
-            Random random = new Random();
-            int randomNumber = random.Next(0, 5);
-            string[] selectionArray = { "Rock", "Paper", "Scissors", "Lizard", "Spock" };
 
-            hand = selectionArray[randomNumber];
+            switch (userInput)
+            {
+                case "1":
+                    hand = "Rock";
+                    break;
+                case "2":
+                    hand = "Paper";
+                    break;
+                case "3":
+                    hand = "Scissors";
+                    break;
+                case "4":
+                    hand = "Lizard";
+                    break;
+                case "5":
+                    hand = "Spock";
+                    break;
+                default:
+                    Console.WriteLine("That didn't work please try again.");
+                    Console.ReadLine();
+                    GetPlayerHand();
+                    break;
+            }
+        }
+        public virtual void getPlayerName()
+        {
+            Console.WriteLine("Please enter your name.\n");
+            name = Console.ReadLine();
         }
     }
 }

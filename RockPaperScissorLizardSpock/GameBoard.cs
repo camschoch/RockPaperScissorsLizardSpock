@@ -22,39 +22,39 @@ namespace RockPaperScissorLizardSpock
 
             if (numberOfPlayers == "1")
             {
-                string humanName = getPlayerName();
+                string humanName = "";
                 string humanPlayerHand = "";
                 int score = 0;
                 playerOne = new Human(humanName, humanPlayerHand, score);
-                playerOne.hand = playerOne.GetPlayerHand();
+                playerOne.getPlayerName();
 
 
-                string computerName = randomNameSelect(random.Next(0, 3));
+                string computerName = "";
                 playerTwo = new AI(computerName, score);
-                playerTwo.randomHandSelect();
+                playerTwo.getPlayerName();
 
-
-                Console.WriteLine(playerOne.name + " has " + playerOne.hand + "\n" + playerTwo.name + " has " + playerTwo.hand + "\n");
-                compareHands(playerOne.hand, playerTwo.hand);
+                Console.WriteLine("Player one is " + playerOne.name + "\nPlayer two is " + playerTwo.name);
                 Console.ReadLine();
+                playGame();
             }
 
 
             else if (numberOfPlayers == "2")
             {
-                string oneName = getPlayerName();
+                string oneName = "";
                 string playerHand = "";
                 int score = 0;
                 playerOne = new Human(oneName, playerHand, score);
-                playerOne.hand = playerOne.GetPlayerHand();
-
-                string twoName = getPlayerName();
+                playerOne.getPlayerName();
+                Console.WriteLine("Now we set up player two.\n");
+                string twoName = "";
                 playerTwo = new Human(twoName, playerHand, score);
-                playerTwo.hand = playerTwo.GetPlayerHand();
+                playerTwo.getPlayerName();
 
-                Console.WriteLine(playerOne.name + " has " + playerOne.hand + "\n" + playerTwo.name + " has " + playerTwo.hand + "\n");
-                compareHands(playerOne.hand, playerTwo.hand);
+                Console.WriteLine("Player one is " + playerOne.name + "\nPlayer two is " + playerTwo.name);
                 Console.ReadLine();
+
+                playGame();
                 
             }
 
@@ -65,29 +65,15 @@ namespace RockPaperScissorLizardSpock
                 setNumberOfPlayers();
             }
         }
-        public string getPlayerName()
+        private void playGame()
         {
-            Console.WriteLine("Please enter your name.\n");
-            string playername = Console.ReadLine();
-            return playername;
-        }
-        public string randomNameSelect(int randomNumber)
-        {
-            string[] selectionArray = { "James", "Sally", "Ken" };
-
-            string randomName = selectionArray[randomNumber];
-            return randomName;
-        }
-
-        public void playGame()
-        {
-            Console.WriteLine(playerOne.name + " has won " + playerOne.score + " and " + playerTwo.name + " has won " + playerTwo.score + "\n" + "Now we wil begin the next round.");
+            Console.WriteLine(playerOne.name + " has won " + playerOne.score + " and " + playerTwo.name + " has won " + playerTwo.score + "\n" + "Now we wil begin the round.");
 
             if (numberOfPlayers == "1")
             {
-                playerOne.hand = playerOne.GetPlayerHand();
+                playerOne.GetPlayerHand();
 
-                playerTwo.randomHandSelect();
+                playerTwo.GetPlayerHand();
 
                 Console.WriteLine(playerOne.name + " has " + playerOne.hand + "\n" + playerTwo.name + " has " + playerTwo.hand + "\n");
                 compareHands(playerOne.hand, playerTwo.hand);
@@ -98,10 +84,10 @@ namespace RockPaperScissorLizardSpock
             else if (numberOfPlayers == "2")
             {
                 Console.WriteLine(playerOne.name + " pick your hand.");
-                playerOne.hand = playerOne.GetPlayerHand();
+                playerOne.GetPlayerHand();
 
                 Console.WriteLine(playerTwo.name + " pick your hand.");
-                playerTwo.hand = playerTwo.GetPlayerHand();
+                playerTwo.GetPlayerHand();
 
                 Console.WriteLine(playerOne.name + " has " + playerOne.hand + "\n" + playerTwo.name + " has " + playerTwo.hand + "\n");
                 compareHands(playerOne.hand, playerTwo.hand);
@@ -109,168 +95,191 @@ namespace RockPaperScissorLizardSpock
 
             }
         }
-
-        public void compareHands(string randomOne, string randomTwo)
+        private void equalHands(string randomOne, string randomTwo)
         {
-            if (randomOne == randomTwo)
-            {
                 Console.WriteLine("It's a tie");
+                Console.ReadLine();
+        }
+        private void playerOneRock(string randomOne, string randomTwo)
+        {
+            if (randomOne == "Rock" && randomTwo == "Paper")
+            {
+                Console.WriteLine(randomTwo + " Wins!");
+                playerTwo.score += 1;
+                Console.ReadLine();
+            }
+            else if (randomOne == "Rock" && randomTwo == "Scissors")
+            {
+                Console.WriteLine(randomOne + " Wins!");
+                playerOne.score += 1;
                 Console.ReadLine();
 
             }
-            if (randomOne == "Rock")
+            else if (randomOne == "Rock" && randomTwo == "Lizard")
             {
-                if (randomOne == "Rock" && randomTwo == "Paper")
-                {
-                    Console.WriteLine(randomTwo + " Wins!");
-                    playerTwo.score += 1;
-                    Console.ReadLine();
-                }
-                else if (randomOne == "Rock" && randomTwo == "Scissors")
-                {
-                    Console.WriteLine(randomOne + " Wins!");
-                    playerOne.score += 1;
-                    Console.ReadLine();
+                Console.WriteLine(randomOne + " Wins!");
+                playerOne.score += 1;
+                Console.ReadLine();
 
-                }
-                else if (randomOne == "Rock" && randomTwo == "Lizard")
-                {
-                    Console.WriteLine(randomOne + " Wins!");
-                    playerOne.score += 1;
-                    Console.ReadLine();
-
-                }
-                else if (randomOne == "Rock" && randomTwo == "Spock")
-                {
-                    Console.WriteLine(randomTwo + " Wins!");
-                    playerTwo.score += 1;
-                    Console.ReadLine();
-
-                }
             }
-            if (randomOne == "Paper")
+            else if (randomOne == "Rock" && randomTwo == "Spock")
             {
-                if (randomOne == "Paper" && randomTwo == "Rock")
-                {
-                    Console.WriteLine(randomOne + " Wins!");
-                    playerOne.score += 1;
-                    Console.ReadLine();
+                Console.WriteLine(randomTwo + " Wins!");
+                playerTwo.score += 1;
+                Console.ReadLine();
 
-                }
-                else if (randomOne == "Paper" && randomTwo == "Scissors")
-                {
-                    Console.WriteLine(randomTwo + " Wins!");
-                    playerTwo.score += 1;
-                    Console.ReadLine();
-
-                }
-                else if (randomOne == "Paper" && randomTwo == "Lizard")
-                {
-                    Console.WriteLine(randomTwo + " Wins!");
-                    playerTwo.score += 1;
-                    Console.ReadLine();
-
-                }
-                else if (randomOne == "Paper" && randomTwo == "Spock")
-                {
-                    Console.WriteLine(randomOne + " Wins!");
-                    playerOne.score += 1;
-                    Console.ReadLine();
-
-                }
             }
-            if (randomOne == "Scissors")
+        }
+        private void randomOnePaper(string randomOne, string randomTwo)
+        {
+            if (randomOne == "Paper" && randomTwo == "Rock")
             {
-                if (randomOne == "Scissors" && randomTwo == "Rock")
-                {
-                    Console.WriteLine(randomTwo + " Wins!");
-                    playerTwo.score += 1;
-                    Console.ReadLine();
+                Console.WriteLine(randomOne + " Wins!");
+                playerOne.score += 1;
+                Console.ReadLine();
 
-                }
-                else if (randomOne == "Scissors" && randomTwo == "Paper")
-                {
-                    Console.WriteLine(randomOne + " Wins!");
-                    playerOne.score += 1;
-                    Console.ReadLine();
-
-                }
-                else if (randomOne == "Scissors" && randomTwo == "Lizard")
-                {
-                    Console.WriteLine(randomOne + " Wins!");
-                    playerOne.score += 1;
-                    Console.ReadLine();
-
-                }
-                else if (randomOne == "Scissors" && randomTwo == "Spock")
-                {
-                    Console.WriteLine(randomTwo + " Wins!");
-                    playerTwo.score += 1;
-                    Console.ReadLine();
-
-                }
             }
-            if (randomOne == "Spock")
+            else if (randomOne == "Paper" && randomTwo == "Scissors")
             {
-                if (randomOne == "Spock" && randomTwo == "Rock")
-                {
-                    Console.WriteLine(randomOne + " Wins!");
-                    playerOne.score += 1;
-                    Console.ReadLine();
+                Console.WriteLine(randomTwo + " Wins!");
+                playerTwo.score += 1;
+                Console.ReadLine();
 
-                }
-                else if (randomOne == "Spock" && randomTwo == "Scissors")
-                {
-                    Console.WriteLine(randomOne + " Wins!");
-                    playerOne.score += 1;
-                    Console.ReadLine();
-
-                }
-                else if (randomOne == "Spock" && randomTwo == "Paper")
-                {
-                    Console.WriteLine(randomTwo + " Wins!");
-                    playerTwo.score += 1;
-                    Console.ReadLine();
-
-                }
-                else if (randomOne == "Spock" && randomTwo == "Lizard")
-                {
-                    Console.WriteLine(randomTwo + " Wins!");
-                    playerTwo.score += 1;
-                    Console.ReadLine();
-
-                }
             }
-            if (randomOne == "Lizard")
+            else if (randomOne == "Paper" && randomTwo == "Lizard")
             {
-                if (randomOne == "Lizard" && randomTwo == "Rock")
-                {
-                    Console.WriteLine(randomTwo + " Wins!");
-                    playerTwo.score += 1;
-                    Console.ReadLine();
+                Console.WriteLine(randomTwo + " Wins!");
+                playerTwo.score += 1;
+                Console.ReadLine();
 
-                }
-                else if (randomOne == "Lizard" && randomTwo == "Paper")
-                {
-                    Console.WriteLine(randomOne + " Wins!");
-                    playerOne.score += 1;
-                    Console.ReadLine();
+            }
+            else if (randomOne == "Paper" && randomTwo == "Spock")
+            {
+                Console.WriteLine(randomOne + " Wins!");
+                playerOne.score += 1;
+                Console.ReadLine();
 
-                }
-                else if (randomOne == "Lizard" && randomTwo == "Scissors")
-                {
-                    Console.WriteLine(randomTwo + " Wins!");
-                    playerTwo.score += 1;
-                    Console.ReadLine();
+            }
+        }
+        private void randomOneScissors(string randomOne, string randomTwo)
+        {
+            if (randomOne == "Scissors" && randomTwo == "Rock")
+            {
+                Console.WriteLine(randomTwo + " Wins!");
+                playerTwo.score += 1;
+                Console.ReadLine();
 
-                }
-                else if (randomOne == "Lizard" && randomTwo == "Spock")
-                {
-                    Console.WriteLine(randomOne + " Wins!");
-                    playerOne.score += 1;
-                    Console.ReadLine();
+            }
+            else if (randomOne == "Scissors" && randomTwo == "Paper")
+            {
+                Console.WriteLine(randomOne + " Wins!");
+                playerOne.score += 1;
+                Console.ReadLine();
 
-                }
+            }
+            else if (randomOne == "Scissors" && randomTwo == "Lizard")
+            {
+                Console.WriteLine(randomOne + " Wins!");
+                playerOne.score += 1;
+                Console.ReadLine();
+
+            }
+            else if (randomOne == "Scissors" && randomTwo == "Spock")
+            {
+                Console.WriteLine(randomTwo + " Wins!");
+                playerTwo.score += 1;
+                Console.ReadLine();
+
+            }
+        }
+        private void randomOneSpock(string randomOne, string randomTwo)
+        {
+            if (randomOne == "Spock" && randomTwo == "Rock")
+            {
+                Console.WriteLine(randomOne + " Wins!");
+                playerOne.score += 1;
+                Console.ReadLine();
+
+            }
+            else if (randomOne == "Spock" && randomTwo == "Scissors")
+            {
+                Console.WriteLine(randomOne + " Wins!");
+                playerOne.score += 1;
+                Console.ReadLine();
+
+            }
+            else if (randomOne == "Spock" && randomTwo == "Paper")
+            {
+                Console.WriteLine(randomTwo + " Wins!");
+                playerTwo.score += 1;
+                Console.ReadLine();
+
+            }
+            else if (randomOne == "Spock" && randomTwo == "Lizard")
+            {
+                Console.WriteLine(randomTwo + " Wins!");
+                playerTwo.score += 1;
+                Console.ReadLine();
+
+            }
+        }
+        private void randomOneLizard(string randomOne, string randomTwo)
+        {
+            if (randomOne == "Lizard" && randomTwo == "Rock")
+            {
+                Console.WriteLine(randomTwo + " Wins!");
+                playerTwo.score += 1;
+                Console.ReadLine();
+
+            }
+            else if (randomOne == "Lizard" && randomTwo == "Paper")
+            {
+                Console.WriteLine(randomOne + " Wins!");
+                playerOne.score += 1;
+                Console.ReadLine();
+
+            }
+            else if (randomOne == "Lizard" && randomTwo == "Scissors")
+            {
+                Console.WriteLine(randomTwo + " Wins!");
+                playerTwo.score += 1;
+                Console.ReadLine();
+
+            }
+            else if (randomOne == "Lizard" && randomTwo == "Spock")
+            {
+                Console.WriteLine(randomOne + " Wins!");
+                playerOne.score += 1;
+                Console.ReadLine();
+
+            }
+        }
+
+        private void compareHands(string randomOne, string randomTwo)
+        {
+            if (randomOne == randomTwo)
+            {
+                equalHands(randomOne, randomTwo);
+            }
+            else if (randomOne == "Rock")
+            {
+                playerOneRock(randomOne, randomTwo);
+            }
+            else if (randomOne == "Paper")
+            {
+                randomOnePaper(randomOne, randomTwo);
+            }
+            else if (randomOne == "Scissors")
+            {
+                randomOneScissors(randomOne, randomTwo);
+            }
+            else if (randomOne == "Spock")
+            {
+                randomOneSpock(randomOne, randomTwo);
+            }
+            else if (randomOne == "Lizard")
+            {
+                randomOneLizard(randomOne, randomTwo);
             }
             if (playerOne.score >= 2)
             {
@@ -280,15 +289,11 @@ namespace RockPaperScissorLizardSpock
             }
             else if (playerTwo.score >= 2)
             {
-                Console.WriteLine(playerOne.name + " Wins!");
+                Console.WriteLine(playerTwo.name + " Wins!");
                 Console.ReadLine();
                 return;
             }
-            if (playerOne.score <= 2)
-            {
-                playGame();
-            }
-            else if (playerTwo.score <= 2)
+            else
             {
                 playGame();
             }

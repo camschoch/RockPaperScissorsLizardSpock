@@ -10,6 +10,7 @@ namespace RockPaperScissorLizardSpock
     {
         static void Main(string[] args)
         {
+
             GameBoard start = new GameBoard();
             start.setNumberOfPlayers();
         }
