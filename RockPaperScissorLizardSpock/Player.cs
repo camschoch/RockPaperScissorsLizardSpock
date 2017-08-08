@@ -39,15 +39,14 @@ namespace RockPaperScissorLizardSpock
                     hand = "Spock";
                     break;
                 default:
-                    Console.WriteLine("That didn't work please try again.");
-                    Console.ReadLine();
+                    Console.WriteLine("\nThat didn't work please try again.");
                     GetPlayerHand();
                     break;
             }
         }
         public virtual void getPlayerName()
         {
-            Console.WriteLine("Please enter your name.\n");
+            Console.WriteLine("Please enter your name.");
             name = Console.ReadLine();
         }
     }

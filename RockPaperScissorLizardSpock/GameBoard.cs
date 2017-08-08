@@ -33,7 +33,7 @@ namespace RockPaperScissorLizardSpock
                 playerTwo = new AI(computerName, score);
                 playerTwo.getPlayerName();
 
-                Console.WriteLine("Player one is " + playerOne.name + "\nPlayer two is " + playerTwo.name);
+                Console.WriteLine("\nPlayer one is " + playerOne.name + "\nPlayer two is " + playerTwo.name);
                 Console.ReadLine();
                 playGame();
             }
@@ -46,7 +46,7 @@ namespace RockPaperScissorLizardSpock
                 int score = 0;
                 playerOne = new Human(oneName, playerHand, score);
                 playerOne.getPlayerName();
-                Console.WriteLine("Now we set up player two.\n");
+                Console.WriteLine("\nNow we set up player two.");
                 string twoName = "";
                 playerTwo = new Human(twoName, playerHand, score);
                 playerTwo.getPlayerName();
@@ -60,8 +60,7 @@ namespace RockPaperScissorLizardSpock
 
             else
             {
-                Console.WriteLine("sorry we did not understand lets retry.");
-                Console.ReadLine();
+                Console.WriteLine("\nSorry we did not understand lets retry.");
                 setNumberOfPlayers();
             }
         }
@@ -283,19 +282,37 @@ namespace RockPaperScissorLizardSpock
             }
             if (playerOne.score >= 2)
             {
-                Console.WriteLine(playerOne.name + " Wins!");
-                Console.ReadLine();
-                return;
+                Console.WriteLine(playerOne.name + " Wins the game!\n");
+                restartGame();
             }
             else if (playerTwo.score >= 2)
             {
-                Console.WriteLine(playerTwo.name + " Wins!");
-                Console.ReadLine();
-                return;
+                Console.WriteLine(playerTwo.name + " Wins the game!\n");
+                restartGame();
             }
             else
             {
                 playGame();
+            }
+        }
+        private void restartGame()
+        {
+            Console.WriteLine("Would you like to play again? Type yes or no.");
+            string userInput = Console.ReadLine();
+
+            if (userInput == "yes")
+            {
+                setNumberOfPlayers();
+            }
+            else if (userInput == "no")
+            {
+                Console.WriteLine("Thank you for playing!");
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("\nSorry we didn't understatnd please type yes or no.");
+                restartGame();
             }
         }
     }
